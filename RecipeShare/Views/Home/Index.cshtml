@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Welcome to RecipeShare";
+}
+
+<div class="jumbotron jumbotron-fluid text-white" style="background-image: url('@Url.Content("~/images/index-background.jpg")'); background-size: cover; background-position: center;">
+    <div class="container text-center">
+        <h1 class="display-3">Welcome to RecipeShare!</h1>
+        <p class="lead">Discover, share, and enjoy recipes from around the world.</p>
+        <a href="/Recipes" class="btn btn-primary btn-lg mt-4">Explore Recipes</a>
+    </div>
+</div>
+
+<div class="container py-5">
+    <h2 class="text-center mb-5">Why Choose RecipeShare?</h2>
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <i class="fas fa-utensils fa-3x mb-3 text-primary"></i>
+            <h4>Wide Variety of Recipes</h4>
+            <p>From traditional to modern, explore a wide range of recipes from various cuisines.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="fas fa-users fa-3x mb-3 text-primary"></i>
+            <h4>Community Driven</h4>
+            <p>Connect with other food enthusiasts, share your recipes, and get feedback.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="fas fa-chart-line fa-3x mb-3 text-primary"></i>
+            <h4>Track Your Progress</h4>
+            <p>Keep track of your culinary journey with personalized analytics and insights.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action Section -->
+<div class="bg-dark text-white text-center py-5">
+    <h3>Ready to Start Cooking?</h3>
+    <p>Join our community of food lovers and start sharing your culinary creations today!</p>
+    <a href="Identity/Account/Register" class="btn btn-light btn-lg">Sign Up Now</a>
+</div>
+
+<!-- Footer Section -->
+<div class="container text-center py-4">
+    <p>&copy; 2024 RecipeShare. All rights reserved.</p>
+    <p>
+        <a href="/Privacy">Privacy Policy</a> | 
+        <a href="/Contact">Contact Us</a>
+    </p>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+}

@@ -1,0 +1,81 @@
+﻿@model RecipeShare.Models.Recipe
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Recipe</h4>
+<hr />
+
+<div class="row">
+<div class="col-md-4">
+
+        <form asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="CountryOfOrigin" class="control-label"></label>
+            <input asp-for="CountryOfOrigin" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Instructions" class="control-label"></label>
+            <textarea asp-for="Instructions" class="form-control"></textarea>
+        </div>
+
+        <h4>Ingredients</h4>
+        <div id="ingredients-list">
+            <div class="form-group">
+                <input asp-for="Ingredients[0].Name" class="form-control" placeholder="Ingredient Name" />
+                <input asp-for="Ingredients[0].Quantity" class="form-control" placeholder="Quantity" />
+                <input asp-for="Ingredients[0].Protein" class="form-control" placeholder="Protein" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="foodImage" class="control-label">Upload Image</label>
+            <input type="file" name="foodImage" class="form-control-file" />
+        </div>
+
+        <button type="button" id="add-ingredient" class="btn btn-secondary">Add Ingredient</button>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    
+    </form>
+</div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+
+    <script>
+        let ingredientIndex = 1;
+
+        document.getElementById('add-ingredient').addEventListener('click', function () {
+            let container = document.createElement('div');
+            container.classList.add('form-group');
+
+            // Use the correct naming convention with square brackets for model binding
+            container.innerHTML = `
+                        <input name="Ingredients[${ingredientIndex}].Name" class="form-control" placeholder="Ingredient Name" />
+                        <input name="Ingredients[${ingredientIndex}].Quantity" class="form-control" placeholder="Quantity" />
+                        <input name="Ingredients[${ingredientIndex}].Protein" class="form-control" placeholder="Protein" />
+                    `;
+
+            document.getElementById('ingredients-list').appendChild(container);
+            ingredientIndex++;
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

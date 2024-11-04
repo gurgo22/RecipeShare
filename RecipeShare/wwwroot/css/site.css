@@ -1,0 +1,129 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.card img {
+    width: 15vw;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#chartDiv {
+    width: 50%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.toolbar-icon {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    z-index: 1000;
+    transform: translateY(-50%);
+    transition: left 0.3s;
+}
+
+    .toolbar-icon i {
+        font-size: 20px;
+    }
+
+/* Accessibility Toolbar */
+.accessibility-toolbar {
+    position: fixed;
+    top: 50%;
+    left: -200px;
+    transform: translateY(-50%);
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s;
+    z-index: 999;
+}
+
+    .accessibility-toolbar button {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .accessibility-toolbar button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .accessibility-toolbar button:active {
+            background-color: #004080;
+            transform: translateY(0);
+        }
+
+        .accessibility-toolbar button:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+.toolbar-icon.active + .accessibility-toolbar {
+    left: 0;
+}
+
+.toolbar-icon:hover {
+    left: 10px;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+    background-color: #000;
+    color: #fff;
+}
+
+    .high-contrast a {
+        color: #0f0;
+    }
+
+    .high-contrast img {
+        filter: invert(100%);
+    }
+
+/* Large Cursor */
+.large-cursor {
+    cursor: url('https://example.com/large-cursor.png'), auto;
+}

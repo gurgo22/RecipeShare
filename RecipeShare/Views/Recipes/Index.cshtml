@@ -1,0 +1,87 @@
+﻿@model IEnumerable<RecipeShare.Models.Recipe>
+
+@{
+    ViewData["Title"] = "Recipes";
+}
+
+<h1 class="mb-4">Recipes</h1>
+
+<form method="get" asp-action="Index" class="mb-4 p-3 rounded shadow-sm bg-light">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <label for="searchString" class="sr-only">Search by Name</label>
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" class="form-control mb-2" placeholder="Search by name..." />
+        </div>
+
+        <div class="col-auto">
+            
+            <label for="countryFilter" class="sr-only">Filter by Country</label>
+            
+            <select name="countryFilter" class="form-control mb-2">
+            
+                <option value="" selected>All Countries</option>
+                <option value="Italy">Italy</option>
+                <option value="France">France</option>
+                <option value="Mexico">Mexico</option>
+                <option value="India">India</option>
+        
+            </select>
+        
+        </div>
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Apply Filters</button>
+        </div>
+
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary mb-4">Create New Recipe</a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model) {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+
+                @{
+                    string imagePath = $"images/recipes/{item.Name}.jpg";
+                }
+    
+                <img src="@imagePath" class="card-img-top" alt="Recipe Image">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">By @item.AuthorId</h6>
+                    <p class="card-text">
+                        <strong>Country of Origin:</strong> @item.CountryOfOrigin
+                    </p>
+                    
+                    <p class="card-text">
+                        <strong>Ingredients:</strong>
+                        <ul>
+                            @foreach (var ingredient in item.Ingredients) {
+                                <li>@ingredient.Name @ingredient.Quantity g (Protein: @ingredient.Protein g)</li>
+                            }
+                        </ul>
+                    </p>
+                    <p class="card-text">
+                        <strong>Instructions:</strong> @Html.Raw(item.Instructions.Length > 100 ? item.Instructions.Substring(0, 100) + "..." : item.Instructions)
+                    </p> 
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+
+                    @if (User.IsInRole("Moderator") || User.IsInRole("Admin")) {
+                        Console.WriteLine("User is not Regular");
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

@@ -1,0 +1,242 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using RecipeShare.Data;
+using RecipeShare.Models;
+
+namespace RecipeShare.Controllers {
+    public class RecipesController : Controller {
+
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public RecipesController(ApplicationDbContext context, UserManager<IdentityUser> userManager) {
+            _context = context;
+            _userManager = userManager;
+        }
+
+        // GET: Recipes
+        public async Task<IActionResult> Index(string searchString, string countryFilter) {
+    
+            IQueryable<Recipe> searchQuery = _context.Recipe.Include(r => r.Ingredients).AsQueryable();
+
+            if (!string.IsNullOrEmpty(countryFilter)) {
+                searchQuery = searchQuery.Where(r => r.CountryOfOrigin.Contains(countryFilter));
+            }
+
+            if (!string.IsNullOrEmpty(searchString)) {
+                searchQuery = searchQuery.Where(r => r.Name.Contains(searchString));
+            }
+
+            List<Recipe> foundRecipes = await searchQuery.ToListAsync();
+
+            return View(foundRecipes);
+        }
+
+        // GET: Recipes/Details/5
+       
+        public async Task<IActionResult> Details(int? id, [Bind("Value")] Rating currentRating, [Bind("Content")] Comment currentComment) {
+
+            if (id == null) {
+                return NotFound();
+            }
+
+            var recipe = await _context.Recipe
+                .Include(r => r.Ingredients) // Include ingredients
+                .Include(r => r.Ratings)     // Include ratings
+                .Include(r => r.Comments)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (recipe == null) {
+                return NotFound();
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+
+            //ADD USER RATING
+
+            bool hasRated = !(_context.Rating.Where(r => r.UserId == user.Id && r.RecipeId == recipe.Id).ToList().IsNullOrEmpty());
+
+            if (!hasRated && currentRating.Value > 0) {
+                Console.WriteLine("user already rated");
+                if (user != null) {
+                    currentRating.UserId = user.Id;
+                }
+
+                recipe.Ratings.Add(currentRating);
+                _context.Add(currentRating);
+                
+                //return RedirectToAction("Details", new { id = recipe.Id });
+
+            }
+            else {
+                Console.WriteLine("user not rated");
+            }
+
+            ViewData["HasRated"] = hasRated;
+
+            //ADD USER COMMENT
+            if (!string.IsNullOrEmpty(currentComment.Content)) {
+                
+                if (user != null) {
+                    currentComment.Author = user.UserName;
+                    currentComment.RecipeId = recipe.Id;
+                    currentComment.CreatedAt = DateTime.Now;
+                    currentComment.Recipe = recipe;
+                }
+
+                recipe.Comments.Add(currentComment);
+
+                _context.Add(currentComment);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return View(recipe);
+        }
+
+        // GET: Recipes/Create
+        [Authorize]
+        public IActionResult Create() {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Name,CountryOfOrigin,Instructions,Ingredients")] Recipe recipe, IFormFile foodImage) {
+
+            if (ModelState.IsValid) {
+                Console.WriteLine("ModelState valid");
+
+                var user = await _userManager.GetUserAsync(User);       //SET RECIPE AUTHORID
+                if (user != null ) {
+                    recipe.AuthorId = user.Id;
+                }
+
+                if (recipe.Ingredients.Count != 0) {        //SET ALL INGREDIENTS RECIPEID
+
+                    foreach (var ingredient in recipe.Ingredients) {
+                        ingredient.Recipe = recipe;
+                    }
+
+                }
+
+                if (foodImage != null && foodImage.Length > 0) {
+
+                    var filePath = Path.Combine("wwwroot/images/recipes", recipe.Name + ".jpg");
+
+                    using (var stream = new FileStream(filePath, FileMode.Create)) {
+                        await foodImage.CopyToAsync(stream);
+                    }
+
+                }
+
+                _context.Add(recipe);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+
+            }
+            if (!ModelState.IsValid) {
+                Console.WriteLine("ModelState invalid");
+                foreach (var state in ModelState) {
+                    foreach (var error in state.Value.Errors) {
+                        Console.WriteLine($"Property: {state.Key}, Error: {error.ErrorMessage}");
+                    }
+                }
+                return View(recipe);
+            }
+            return View(recipe);
+        }
+
+        // GET: Recipes/Edit/5
+        [Authorize (Roles = "Admin,Moderator")]
+        public async Task<IActionResult> Edit(int? id) {
+            if (id == null) {
+                return NotFound();
+            }
+
+            var recipe = await _context.Recipe
+                .Include(r => r.Ingredients) // Include ingredients for editing
+                .FirstOrDefaultAsync(r => r.Id == id);
+            if (recipe == null) {
+                return NotFound();
+            }
+            return View(recipe);
+        }
+
+        // POST: Recipes/Edit/5
+        [Authorize(Roles = "Admin,Moderator")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CountryOfOrigin,Instructions,Ingredients")] Recipe recipe) {
+            if (id != recipe.Id) {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid) {
+                try {
+                    // Update ingredients
+                    var existingIngredients = _context.Ingredient.Where(i => i.RecipeId == recipe.Id).ToList();
+                    _context.Ingredient.RemoveRange(existingIngredients);
+                    _context.Ingredient.AddRange(recipe.Ingredients);
+
+                    _context.Update(recipe);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException) {
+                    if (!RecipeExists(recipe.Id)) {
+                        return NotFound();
+                    }
+                    else {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(recipe);
+        }
+
+        // GET: Recipes/Delete/5
+        [Authorize(Roles = "Admin,Moderator")]
+        public async Task<IActionResult> Delete(int? id) {
+            if (id == null) {
+                return NotFound();
+            }
+
+            var recipe = await _context.Recipe
+                .Include(r => r.Ingredients) // Include ingredients for deletion
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (recipe == null) {
+                return NotFound();
+            }
+
+            return View(recipe);
+        }
+
+        // POST: Recipes/Delete/5
+        [Authorize]
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id) {
+            var recipe = await _context.Recipe.Include(r => r.Ingredients).FirstOrDefaultAsync(r => r.Id == id);
+            if (recipe != null) {
+                _context.Recipe.Remove(recipe);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool RecipeExists(int id) {
+            return _context.Recipe.Any(e => e.Id == id);
+        }
+    }
+}

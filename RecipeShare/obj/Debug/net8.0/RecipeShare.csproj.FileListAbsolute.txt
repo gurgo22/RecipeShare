@@ -572,3 +572,4 @@ C:\RS\RecipeShare\obj\Debug\net8.0\refint\RecipeShare.dll
 C:\RS\RecipeShare\obj\Debug\net8.0\RecipeShare.pdb
 C:\RS\RecipeShare\obj\Debug\net8.0\RecipeShare.genruntimeconfig.cache
 C:\RS\RecipeShare\obj\Debug\net8.0\ref\RecipeShare.dll
+C:\RS\RecipeShare\obj\Debug\net8.0\RecipeShare.sourcelink.json

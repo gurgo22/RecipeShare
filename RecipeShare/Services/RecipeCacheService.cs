@@ -26,13 +26,14 @@ namespace RecipeShare.Services {
             _cacheOptions.SetAbsoluteExpiration(TimeSpan.FromSeconds(3600));
         }
 
+        //SETS CACHE IF THERE ARE NO RECIPES IN CACHE ALREADY
         public void SetCache () {
 
             if (_cache.TryGetValue(recipesCacheKey, out IEnumerable<Recipe> recipes)) {
 
                 //Recipes in cache
             }
-            else {
+            else { 
 
                 recipes = _context.Recipe.ToList();
 
@@ -57,6 +58,5 @@ namespace RecipeShare.Services {
                 _cache.Set(recipesCacheKey, updatedRecipes, _cacheOptions);
             }
         }
-
     }
 }

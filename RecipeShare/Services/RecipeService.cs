@@ -29,7 +29,8 @@ namespace RecipeShare.Services {
             return false;
         }
 
-        public static void TryAddRating (Rating currentRating, IdentityUser user, Recipe recipe, ApplicationDbContext _context) {
+        //ADDS A USER RATING IF CRITERIAS ARE MET
+        public static void AddRating (Rating currentRating, IdentityUser user, Recipe recipe, ApplicationDbContext _context) {
 
             bool hasRated = false;
 
@@ -44,8 +45,8 @@ namespace RecipeShare.Services {
             }
         }
 
-        //ADD USER COMMENT
-        public static void TryAddComment (ApplicationDbContext _context, IdentityUser user, Recipe recipe, Comment currentComment) {
+        //ADDS A USER COMMENT IF CRITERIAS ARE MET
+        public static void AddComment (ApplicationDbContext _context, IdentityUser user, Recipe recipe, Comment currentComment) {
 
             if (!string.IsNullOrEmpty(currentComment.Content)) {
 
@@ -89,19 +90,19 @@ namespace RecipeShare.Services {
             }
         }
 
+        /*
         public static void UpdateIngredients(ApplicationDbContext _context, Recipe recipe) {
 
             var existingIngredients = _context.Ingredient.Where(i => i.RecipeId == recipe.Id).ToList();
             _context.Ingredient.RemoveRange(existingIngredients);
             _context.Ingredient.AddRange(recipe.Ingredients);
         }
+        */
 
+        //CHECKS IF THE RECIPE ALREADY EXISTS
         public static bool RecipeExists(ApplicationDbContext _context, int id) {
 
             return _context.Recipe.Any(e => e.Id == id);
         }
-
-        
-
     }
 }

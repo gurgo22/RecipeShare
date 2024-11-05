@@ -13,9 +13,10 @@ namespace RecipeShare.Services {
         }
 
         public void OnActionExecuted(ActionExecutedContext context) {
-        
+            
         }
 
+        //COLLECTS USER ACTIVITY DATA AND SAVES IT
         public void OnActionExecuting(ActionExecutingContext context) {
 
             string data = "";
@@ -34,6 +35,7 @@ namespace RecipeShare.Services {
                 data = userData;
 
             } else {
+             
                 data = JsonConvert.SerializeObject(context.ActionArguments.FirstOrDefault());
             }
 
@@ -46,6 +48,7 @@ namespace RecipeShare.Services {
             }
         }
 
+        //STORES USER ACTIVITY IN DATABASE
         public void StoreActivity(string data, string url, string userName, string ip) {
 
             Console.WriteLine("Activity stored");

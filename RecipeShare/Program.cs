@@ -75,7 +75,7 @@ namespace RecipeShare {
                 string adminEmail = "admin@admin.com";
                 string adminPassword = "Admin123@";
 
-                //SEEDING ACCOUNT
+                //SEEDING ADMIN ACCOUNT
                 if (await userManager.FindByEmailAsync(adminEmail) == null) {
                     
                     IdentityUser adminUser = new IdentityUser();

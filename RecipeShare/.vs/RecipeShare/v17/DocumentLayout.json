@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\RS\\RecipeShare\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B97BB96F-3044-442C-A4C6-6EDFAC66D1C9}|RecipeShare.csproj|c:\\rs\\recipeshare\\services\\recipecacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B97BB96F-3044-442C-A4C6-6EDFAC66D1C9}|RecipeShare.csproj|solutionrelative:services\\recipecacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B97BB96F-3044-442C-A4C6-6EDFAC66D1C9}|RecipeShare.csproj|c:\\rs\\recipeshare\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B97BB96F-3044-442C-A4C6-6EDFAC66D1C9}|RecipeShare.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B97BB96F-3044-442C-A4C6-6EDFAC66D1C9}|RecipeShare.csproj|c:\\rs\\recipeshare\\views\\home\\analytics.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B97BB96F-3044-442C-A4C6-6EDFAC66D1C9}|RecipeShare.csproj|solutionrelative:views\\home\\analytics.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B97BB96F-3044-442C-A4C6-6EDFAC66D1C9}|RecipeShare.csproj|c:\\rs\\recipeshare\\services\\recipecacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B97BB96F-3044-442C-A4C6-6EDFAC66D1C9}|RecipeShare.csproj|solutionrelative:services\\recipecacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B97BB96F-3044-442C-A4C6-6EDFAC66D1C9}|RecipeShare.csproj|c:\\rs\\recipeshare\\controllers\\useractivitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\RS\\RecipeShare\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
@@ -51,7 +51,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Analytics.cshtml",
               "DocumentMoniker": "C:\\RS\\RecipeShare\\Views\\Home\\Analytics.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Analytics.cshtml",
@@ -59,18 +59,17 @@
               "RelativeToolTip": "Views\\Home\\Analytics.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-05T12:47:38.806Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-05T12:47:38.806Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "RecipeCacheService.cs",
               "DocumentMoniker": "C:\\RS\\RecipeShare\\Services\\RecipeCacheService.cs",
               "RelativeDocumentMoniker": "Services\\RecipeCacheService.cs",
               "ToolTip": "C:\\RS\\RecipeShare\\Services\\RecipeCacheService.cs",
               "RelativeToolTip": "Services\\RecipeCacheService.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAADwvxIAAAAMAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAADwvx8AAABXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-05T12:47:01.95Z",
               "EditorCaption": ""
@@ -85,8 +84,7 @@
               "RelativeToolTip": "Controllers\\AccountController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T09:14:23.989Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-05T09:14:23.989Z"
             },
             {
               "$type": "Document",
@@ -98,8 +96,7 @@
               "RelativeToolTip": "Controllers\\UserActivitiesController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T09:09:13.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-05T09:09:13.466Z"
             },
             {
               "$type": "Document",
@@ -111,8 +108,7 @@
               "RelativeToolTip": "Controllers\\RecipesController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T16:33:33.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-14T16:33:33.629Z"
             }
           ]
         }

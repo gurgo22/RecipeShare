@@ -30,7 +30,6 @@ namespace RecipeShare.Services {
         public void SetCache () {
 
             if (_cache.TryGetValue(recipesCacheKey, out IEnumerable<Recipe> recipes)) {
-
                 //Recipes in cache
             }
             else { 

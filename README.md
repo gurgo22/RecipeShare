@@ -5,29 +5,24 @@ RecipeShare is a recipe-sharing web application built with ASP.NET Core and Enti
 
 Features
 
-Recipe Management
-
 Recipe Listings:
 View a list of recipes with filter and search options based on the recipe name and country of origin.
+
 Detailed Recipe View:
 Each recipe page displays ingredients, ratings, and user comments.
 Create, Edit, and Delete Recipes: Admin and moderator roles can manage recipes by creating, editing, and deleting entries.
-User Interactions
 
 Commenting:
 Logged-in users can add comments on recipe pages.
 
 Rating:
 Users can rate recipes, with checks to ensure that a recipe is only rated once per user.
-Caching and Performance
 
 Recipe Caching:
 Popular recipes are cached for faster access using in-memory caching. Cache settings ensure that data remains current.
-User Activity and Analytics
 
-User Activity Logging:
+User Activity Logging and Analytics:
 Admins can view logs of user activities to monitor usage patterns within the application.
-Accessibility
 
 Accessibility Toolbar:
 A custom toolbar allows users to adjust text size, contrast, and other display settings for an enhanced user experience.

@@ -1,6 +1,6 @@
 RecipeShare Web Application
 
-RecipeShare is a recipe-sharing web application built with ASP.NET Core and Entity Framework. This app allows users to explore, rate, and comment on a variety of recipes, with features that showcase best practices in web development, such as caching, role-based access control, and user activity tracking.
+RecipeShare is a recipe-sharing web application built with ASP.NET Core and Entity Framework. This app allows users to explore, rate, and comment on a variety of recipes, with features that showcases technicalities in web application development, such as caching, role-based access control, and user activity tracking.
 
 
 Features

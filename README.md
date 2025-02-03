@@ -50,16 +50,3 @@ RecipeShare is a recipe-sharing web application built with **ASP.NET Core** and 
 - **Identity Framework** – User authentication and role-based access control.
 - **IMemoryCache** – Caching service for frequently accessed data.
 
----
-
-## Getting Started
-
-### Prerequisites
-- [.NET Core SDK](https://dotnet.microsoft.com/download) (version 6.0 or later)
-- [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
-- [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/)
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/recipeshare.git

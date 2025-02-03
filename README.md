@@ -1,65 +1,65 @@
-RecipeShare Web Application
+# RecipeShare Web Application
 
-RecipeShare is a recipe-sharing web application built with ASP.NET Core and Entity Framework. This app allows users to explore, rate, and comment on a variety of recipes, with features that showcases technicalities in web application development, such as caching, role-based access control, and user activity tracking.
+RecipeShare is a recipe-sharing web application built with **ASP.NET Core** and **Entity Framework**. This app allows users to explore, rate, and comment on a variety of recipes, with features that showcase technicalities in web application development, such as caching, role-based access control, and user activity tracking.
 
+---
 
-Features
+## Features
 
-Recipe Listings:
+### Recipe Listings
+- View a list of recipes with filter and search options based on the recipe name and country of origin.
 
-View a list of recipes with filter and search options based on the recipe name and country of origin.
+### Detailed Recipe View
+- Each recipe page displays ingredients, ratings, and user comments.
 
+### Create, Edit, and Delete Recipes
+- Admin and moderator roles can manage recipes by creating, editing, and deleting entries.
 
-Detailed Recipe View:
+### Commenting
+- Logged-in users can add comments on recipe pages.
 
-Each recipe page displays ingredients, ratings, and user comments.
-Create, Edit, and Delete Recipes: Admin and moderator roles can manage recipes by creating, editing, and deleting entries.
+### Rating
+- Users can rate recipes, with checks to ensure that a recipe is only rated once per user.
 
+### Recipe Caching
+- Popular recipes are cached for faster access using in-memory caching. Cache settings ensure that data remains current.
 
-Commenting:
+### User Activity Logging and Analytics
+- Admins can view logs of user activities to monitor usage patterns within the application.
 
-Logged-in users can add comments on recipe pages.
+### Accessibility Toolbar
+- A custom toolbar allows users to adjust text size, contrast, and other display settings for an enhanced user experience.
 
+---
 
-Rating:
+## Security and Role-Based Access Control
 
-Users can rate recipes, with checks to ensure that a recipe is only rated once per user.
+### Authorization
+- Specific actions are restricted to roles (Admin and Moderator) to ensure secure access control.
 
+### User Authentication
+- Built-in authentication restricts certain features, like commenting and rating, to logged-in users.
 
-Recipe Caching:
+---
 
-Popular recipes are cached for faster access using in-memory caching. Cache settings ensure that data remains current.
+## Technology Stack
 
+- **ASP.NET Core** – Web framework for building the application.
+- **Entity Framework Core** – ORM for database interaction.
+- **Microsoft SQL Server** – Database management system.
+- **Identity Framework** – User authentication and role-based access control.
+- **IMemoryCache** – Caching service for frequently accessed data.
 
-User Activity Logging and Analytics:
+---
 
-Admins can view logs of user activities to monitor usage patterns within the application.
+## Getting Started
 
+### Prerequisites
+- [.NET Core SDK](https://dotnet.microsoft.com/download) (version 6.0 or later)
+- [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+- [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/)
 
-Accessibility Toolbar:
-
-A custom toolbar allows users to adjust text size, contrast, and other display settings for an enhanced user experience.
-Security and Role-Based Access Control
-
-
-Authorization:
-
-Specific actions are restricted to roles (Admin and Moderator) to ensure secure access control.
-
-
-User Authentication:
-
-Built-in authentication restricts certain features, like commenting and rating, to logged-in users.
-
-
-Technology Stack
-
-ASP.NET Core - Web framework for building the application.
-
-Entity Framework Core - ORM for database interaction.
-
-Microsoft SQL Server - Database management system.
-
-Identity Framework - User authentication and role-based access control.
-
-IMemoryCache - Caching service for frequently accessed data.
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/recipeshare.git
